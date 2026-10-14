@@ -19,6 +19,15 @@ class AuthController extends Controller
         return view('register');
     }
 
+    private function redirectByRole()
+    {
+        if(Auth::user()->role === 'admin') {
+            return redirect()->route('dashboard');
+        } 
+
+        return redirect()->route('home');
+    }
+
     public function register(Request $request)
     {
         $validate = $request->validate([
@@ -71,13 +80,6 @@ class AuthController extends Controller
         return redirect('/login') -> with('success', 'Logout berhasil!.');
     }
 
-    private function redirectByRole()
-    {
-        if(Auth::user()->role === 'admin') {
-            return redirect()->route('dashboard');
-        } 
-
-        return redirect()->route('home');
-    }
+    
 
 }
