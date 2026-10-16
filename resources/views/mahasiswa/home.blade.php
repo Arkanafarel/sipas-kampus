@@ -63,6 +63,15 @@
             z-index: 100;
         }
 
+        .nav-menu {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
         .brand {
             display: flex;
             align-items: center;
