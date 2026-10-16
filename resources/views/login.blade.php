@@ -307,6 +307,9 @@
     <main class="login-card">
         <!-- Logo Brand -->
         <div class="brand-header">
+            <div class="brand-logo">
+                <i class="fa-solid fa-graduation-cap"></i>
+            </div>
             <div>
                 <div class="brand-title">SIPAS KAMPUS</div>
                 <div class="brand-subtitle">Sistem Informasi Pengaduan dan Layanan Aspirasi Kampus</div>

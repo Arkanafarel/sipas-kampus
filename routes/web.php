@@ -1,7 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Category;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ComplaintController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -18,8 +21,20 @@ Route::get('/dashboard', function () {
 })->middleware('auth')->name('dashboard');
 
 Route::get('/home', function () {
-    return view('mahasiswa.home');
+    $complaints = \App\Models\Complaint::where('user_id', auth()->id())
+        ->latest()
+        ->take(5)
+        ->get();
+
+    return view('mahasiswa.home', compact('complaints'));
 })->middleware('auth')->name('home');
 
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
 
+Route::post('/pengaduan', [ComplaintController::class, 'store'])->middleware('auth')->name('pengaduan.store');
+
+Route::get('/pengaduan/create', function () {
+    $categories = Category::all();
+
+    return view('mahasiswa.pengaduan', compact('categories'));
+})->middleware('auth')->name('pengaduan.create');

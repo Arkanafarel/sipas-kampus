@@ -1114,7 +1114,7 @@
         </a>
 
         {{-- Ganti href setelah route pembuatan pengaduan tersedia --}}
-        <a href="#buat-pengaduan" class="nav-link">
+        <a href="{{route('pengaduan.create')}}" class="nav-link">
             <i class="fa-regular fa-file-lines"></i>
             Buat Pengaduan
         </a>
@@ -1270,7 +1270,7 @@
             </div>
         </div>
 
-        <a href="#buat-pengaduan" class="quick-card" id="buat-pengaduan">
+        <a href="{{route('pengaduan.create')}}" class="quick-card" id="buat-pengaduan">
             <i class="fa-solid fa-file-circle-plus"></i>
             <div class="quick-card-bottom">
                 <span>Buat<br>Pengaduan</span>
@@ -1287,6 +1287,7 @@
         </a>
     </section>
 
+    
     {{-- PENGADUAN DAN INFORMASI KAMPUS --}}
     <section class="content-grid">
 
@@ -1314,34 +1315,48 @@
                             <th>Status</th>
                         </tr>
                     </thead>
-                    
+
                     <tbody>
-                    <tr>
-                        <td colspan="5" style="padding: 45px 20px; text-align: center;">
-                            <div style="font-size: 35px; color: #9bb4d1; margin-bottom: 14px;">
-                                <i class="fa-regular fa-folder-open"></i>
-                            </div>
+                        @forelse ($complaints as $complaint)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $complaint->title }}</td>
+                                <td>{{ $complaint->category?->name ?? '-' }}</td>
+                                <td>
+                                    {{ $complaint->created_at?->format('d/m/Y') ?? '-' }}
+                                </td>
+                                <td>
+                                    <span class="status-badge">
+                                        {{ ucfirst($complaint->status) }}
+                                    </span>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="5"
+                                    style="padding: 45px 20px; text-align: center;">
+                                    <div style="font-size: 35px; color: #9bb4d1; margin-bottom: 14px;">
+                                        <i class="fa-regular fa-folder-open"></i>
+                                    </div>
 
-                            <div style="font-size: 14px; font-weight: 700; color: #164780; margin-bottom: 8px;">
-                                Belum Ada Pengaduan
-                            </div>
+                                    <div style="font-size: 14px; font-weight: 700; color: #164780; margin-bottom: 8px;">
+                                        Belum Ada Pengaduan
+                                    </div>
 
-                            <div style="font-size: 12px; color: #71839d; line-height: 1.8;">
-                                Kamu belum mengajukan pengaduan.<br>
-                                Klik tombol di bawah untuk menyampaikan pengaduan pertamamu.
-                            </div>
+                                    <div style="font-size: 12px; color: #71839d; line-height: 1.8;">
+                                        Kamu belum mengajukan pengaduan.<br>
+                                        Klik tombol di bawah untuk menyampaikan pengaduan pertamamu.
+                                    </div>
 
-                            <a href="#buat-pengaduan"
-                            style="display: inline-flex; align-items: center; gap: 8px;
-                                    margin-top: 18px; padding: 11px 18px;
-                                    background: #ffcf32; color: #103766;
-                                    border-radius: 25px; font-size: 12px; font-weight: 700;">
-                                <i class="fa-solid fa-plus"></i>
-                                Buat Pengaduan
-                            </a>
-                        </td>
-                    </tr>
-                </tbody>
+                                    <a href="{{ route('pengaduan.create') }}"
+                                    style="display: inline-flex; align-items: center; gap: 8px; margin-top: 18px; padding: 11px 18px; background: #ffcf32; color: #103766; border-radius: 25px; font-size: 12px; font-weight: 700;">
+                                        <i class="fa-solid fa-plus"></i>
+                                        Buat Pengaduan
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforelse
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -1363,6 +1378,7 @@
         </aside>
 
     </section>
+
 
     <footer class="footer">
         © {{ date('Y') }} Sistem Informasi Pengaduan dan Layananan Aspirasi Kampus
