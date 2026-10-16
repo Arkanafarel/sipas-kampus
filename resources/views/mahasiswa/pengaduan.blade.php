@@ -584,7 +584,7 @@
                 <i class="fa-regular fa-file-lines"></i>
                 Buat Pengaduan
             </a>
-            <a href="#pengaduan-saya" class="nav-link">
+            <a href="{{ route('pengaduan.index') }}" class="nav-link">
                 <i class="fa-regular fa-rectangle-list"></i>
                 Pengaduan Saya
             </a>

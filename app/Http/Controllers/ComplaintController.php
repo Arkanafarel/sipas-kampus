@@ -39,4 +39,21 @@ class ComplaintController extends Controller
         return redirect()->route('home')
             ->with('success', 'Pengaduan berhasil dikirim!');
     }
+
+    public function index()
+    {
+        $complaints = Complaint::where('user_id', auth()->id())
+            ->latest()
+            ->paginate(10);
+
+        return view('mahasiswa.pengaduan.index', compact('complaints'));
+    }
+
+    public function show($id)
+    {
+        $pengaduan = Complaint::where('user_id', auth()->id())
+            ->findOrFail($id);
+
+        return view('mahasiswa.pengaduan.show', compact('pengaduan'));
+    }
 }

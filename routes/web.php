@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Category;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ComplaintController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ComplaintController as AdminComplaintController;
 
 
 Route::get('/', function () {
@@ -16,9 +18,17 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
 Route::post('/register', [AuthController::class, 'register']);
 
-Route::get('/dashboard', function () {
-    return view('admin.dashboard');
-})->middleware('auth')->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->middleware('auth')
+    ->name('dashboard');
+
+Route::prefix('admin')
+    ->middleware('auth')
+    ->name('admin.')
+    ->group(function () {
+        Route::get('/pengaduan', [AdminComplaintController::class, 'index'])
+            ->name('pengaduan.index');
+        });
 
 Route::get('/home', function () {
     $complaints = \App\Models\Complaint::where('user_id', auth()->id())

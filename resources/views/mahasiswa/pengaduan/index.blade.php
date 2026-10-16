@@ -195,7 +195,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @forelse($pengaduan as $item)
+                        @forelse($complaints as $item)
                         <tr>
                             <td><strong>{{ $item->title }}</strong></td>
                             <td>{{ $item->category->name ?? $item->category ?? '-' }}</td>

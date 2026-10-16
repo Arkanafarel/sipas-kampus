@@ -1129,7 +1129,7 @@
         </a>
 
         {{-- Ganti href setelah route daftar pengaduan tersedia --}}
-        <a href="#pengaduan-saya" class="nav-link">
+        <a href="{{ route('pengaduan.index') }}" class="nav-link">
             <i class="fa-regular fa-rectangle-list"></i>
             Pengaduan Saya
         </a>
@@ -1307,7 +1307,7 @@
                     Pengaduan Terbaru
                 </h2>
 
-                <a href="#pengaduan-saya" class="view-all">
+                <a href="{{ route('pengaduan.index') }}" class="view-all">
                     Lihat Semua
                     <i class="fa-solid fa-arrow-right"></i>
                 </a>
