@@ -33,7 +33,7 @@ class ComplaintController extends Controller
             'title' => $request->title,
             'description' => $request->description,
             'image_path' => $imagePath,
-            'status' => 'pending',
+            'status' => 'Sedang Diverifikasi Admin',
         ]);
 
         return redirect()->route('home')
