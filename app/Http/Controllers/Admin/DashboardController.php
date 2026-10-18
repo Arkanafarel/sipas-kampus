@@ -11,11 +11,11 @@ class DashboardController extends Controller
     {
         $totalPengaduan = Complaint::count();
 
-        $menunggu = Complaint::where('status', 'pending')->count();
+        $menunggu = Complaint::where('status', 'Sedang Diverifikasi Admin')->count();
 
-        $diproses = Complaint::where('status', 'processing')->count();
+        $diproses = Complaint::where('status', 'Sedang Diproses / Ditindaklanjuti')->count();
 
-        $selesai = Complaint::where('status', 'done')->count();
+        $selesai = Complaint::where('status', 'Selesai')->count();
 
         $complaints = Complaint::with(['user', 'category'])
             ->latest()

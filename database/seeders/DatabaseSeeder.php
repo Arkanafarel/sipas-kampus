@@ -3,37 +3,25 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
+    /**
+     * Seed the application's database.
+     */
     public function run(): void
     {
-        // Jalankan seeder kategori
-        $this->call([
-            CategorySeeder::class,
-        ]);
+        $this->call(CategorySeeder::class);
 
-        // Akun Admin Bawaan
-        User::updateOrCreate(
-            ['email' => 'admin@gmail.com'],
+        User::firstOrCreate(
+            ['email' => 'admin@sipas.ac.id'],
             [
-                'name' => 'Administrator',
-                'npm' => '00000000',
-                'password' => Hash::make('admin123'),
+                'name' => 'Administrator SIPAS',
+                'npm' => '0000000000',
+                'password' => bcrypt('password123'),
                 'role' => 'admin',
-            ]
-        );
-
-        // Akun Mahasiswa Bawaan
-        User::updateOrCreate(
-            ['email' => 'mahasiswa@gmail.com'],
-            [
-                'name' => 'Mahasiswa Contoh',
-                'npm' => '12345678',
-                'password' => Hash::make('password123'),
-                'role' => 'mahasiswa',
             ]
         );
     }

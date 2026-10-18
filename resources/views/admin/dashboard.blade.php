@@ -446,6 +446,10 @@
                     <i class="fa-regular fa-folder-open"></i>
                     Pengaduan Terbaru
                 </a>
+                <a href="{{ route('admin.pengaduan.index') }}" class="nav-link">
+                    <i class="fa-solid fa-inbox"></i>
+                    Semua Pengaduan
+                </a>
             </nav>
 
             <div class="sidebar-bottom">
@@ -549,7 +553,7 @@
                             @forelse ($complaints as $complaint)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td class="complaint-title">{{ $complaint->title }}</td>
+                                    <td class="complaint-title"><a href="{{ route('admin.pengaduan.show', $complaint) }}">{{ $complaint->title }}</a></td>
                                     <td>{{ $complaint->user->name ?? '-' }}</td>
                                     <td>{{ $complaint->category->name ?? '-' }}</td>
                                     <td>

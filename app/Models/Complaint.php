@@ -17,6 +17,9 @@ class Complaint extends Model
         'description',
         'image_path',
         'status',
+        'admin_response',
+        'completion_photo',
+        'completion_note',
     ];
 
     public function category()

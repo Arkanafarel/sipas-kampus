@@ -141,6 +141,13 @@
             </div>
         @endif
 
+        @if($pengaduan->admin_response)
+            <div class="admin-response-card">
+                <div class="section-title"><i class="fa-solid fa-comment-dots"></i> Respons Admin</div>
+                <div class="detail-text" style="background: white;">{{ $pengaduan->admin_response }}</div>
+            </div>
+        @endif
+
         <div style="margin-top: 24px;">
             <a href="{{ route('pengaduan.index') }}" class="btn-back"><i class="fa-solid fa-arrow-left"></i> Kembali ke Riwayat</a>
         </div>

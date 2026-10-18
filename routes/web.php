@@ -7,7 +7,6 @@ use App\Http\Controllers\ComplaintController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ComplaintController as AdminComplaintController;
 
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -19,16 +18,20 @@ Route::get('/register', [AuthController::class, 'showRegister'])->name('register
 Route::post('/register', [AuthController::class, 'register']);
 
 Route::get('/dashboard', [DashboardController::class, 'index'])
-    ->middleware('auth')
+    ->middleware(['auth', 'admin'])
     ->name('dashboard');
 
 Route::prefix('admin')
-    ->middleware('auth')
+    ->middleware(['auth', 'admin'])
     ->name('admin.')
     ->group(function () {
         Route::get('/pengaduan', [AdminComplaintController::class, 'index'])
             ->name('pengaduan.index');
-        });
+        Route::get('/pengaduan/{complaint}', [AdminComplaintController::class, 'show'])
+            ->name('pengaduan.show');
+        Route::put('/pengaduan/{complaint}', [AdminComplaintController::class, 'update'])
+            ->name('pengaduan.update');
+    });
 
 Route::get('/home', function () {
     $complaints = \App\Models\Complaint::where('user_id', auth()->id())
