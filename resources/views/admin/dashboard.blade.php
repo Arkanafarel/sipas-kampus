@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Admin | SIPAS Kampus</title>
 
-    <!-- Google Font Inter & Font Awesome -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -44,7 +43,6 @@
             min-height: 100vh;
         }
 
-        /* Sidebar Styling */
         .sidebar {
             width: 260px;
             background: var(--blue-dark);
@@ -449,6 +447,14 @@
                 <a href="{{ route('admin.pengaduan.index') }}" class="nav-link">
                     <i class="fa-solid fa-inbox"></i>
                     Semua Pengaduan
+                </a>
+                <a href="{{ route('admin.users.index') }}" class="nav-link">
+                    <i class="fa-solid fa-users"></i>
+                    Daftar Pengguna
+                </a>
+                <a href="{{ route('admin.monthly-reports.index') }}" class="nav-link">
+                    <i class="fa-solid fa-file-invoice"></i>
+                    Laporan Bulanan
                 </a>
             </nav>
 
