@@ -6,6 +6,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ComplaintController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ComplaintController as AdminComplaintController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\MonthlyReportController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -25,12 +27,27 @@ Route::prefix('admin')
     ->middleware(['auth', 'admin'])
     ->name('admin.')
     ->group(function () {
+        // Pengaduan (Admin)
         Route::get('/pengaduan', [AdminComplaintController::class, 'index'])
             ->name('pengaduan.index');
         Route::get('/pengaduan/{complaint}', [AdminComplaintController::class, 'show'])
             ->name('pengaduan.show');
         Route::put('/pengaduan/{complaint}', [AdminComplaintController::class, 'update'])
             ->name('pengaduan.update');
+
+        // Daftar Pengguna
+        Route::get('/users', [UserController::class, 'index'])
+            ->name('users.index');
+
+        // Daftar & Detail Arsip Laporan Bulanan
+        Route::get('/laporan-bulanan', [MonthlyReportController::class, 'index'])
+            ->name('monthly-reports.index');
+        Route::get('/laporan-bulanan/create', [MonthlyReportController::class, 'create'])
+            ->name('monthly-reports.create');
+        Route::post('/laporan-bulanan', [MonthlyReportController::class, 'store'])
+            ->name('monthly-reports.store');
+        Route::get('/laporan-bulanan/{monthlyReport}', [MonthlyReportController::class, 'show'])
+            ->name('monthly-reports.show');
     });
 
 Route::get('/home', function () {

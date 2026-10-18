@@ -52,4 +52,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(\App\Models\Complaint::class);
     }
+
+    public function monthlyReports()
+    {
+        return $this->hasMany(\App\Models\MonthlyReport::class, 'created_by');
+    }
 }

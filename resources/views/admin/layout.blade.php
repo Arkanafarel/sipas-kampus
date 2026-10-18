@@ -43,8 +43,10 @@
     <div class="top">
         <a class="brand" href="{{ route('dashboard') }}">SIPAS KAMPUS / ADMIN</a>
         <nav>
-            <a href="{{ route('dashboard') }}">Dashboard</a>
-            <a href="{{ route('admin.pengaduan.index') }}">Pengaduan</a>
+            <a href="{{ route('dashboard') }}" style="{{ request()->routeIs('dashboard') ? 'font-weight: 700; background: #ffffff22; border-radius: 4px;' : '' }}">Dashboard</a>
+            <a href="{{ route('admin.pengaduan.index') }}" style="{{ request()->routeIs('admin.pengaduan.*') ? 'font-weight: 700; background: #ffffff22; border-radius: 4px;' : '' }}">Pengaduan</a>
+            <a href="{{ route('admin.users.index') }}" style="{{ request()->routeIs('admin.users.*') ? 'font-weight: 700; background: #ffffff22; border-radius: 4px;' : '' }}">Pengguna</a>
+            <a href="{{ route('admin.monthly-reports.index') }}" style="{{ request()->routeIs('admin.monthly-reports.*') ? 'font-weight: 700; background: #ffffff22; border-radius: 4px;' : '' }}">Laporan Bulanan</a>
             <form action="{{ route('logout') }}" method="POST">@csrf<button class="logout" type="submit">Keluar</button></form>
         </nav>
     </div>
